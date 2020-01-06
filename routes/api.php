@@ -28,3 +28,5 @@ Route::get('designerlogin/','designController@designer_login');
 Route::get('designerprofile/','DesignerprofileController@designer_profile');
 
 Route::post('designs/','designsController@designupload');
+
+Route::post('userview/','UserviewController@userview');

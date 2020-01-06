@@ -14,16 +14,16 @@ class CreateUserviewTable extends Migration
     public function up()
     {
         Schema::create('userview', function (Blueprint $table) {
-            $table->Increments('id');
-            $table->integer('fk_designid')->unsigned();
-            $table->integer('fk_designid')->references('id')on('designs');
+            $table->increments('id');
+            $table->integer('des_fk')->unsigned();
+            // $table->integer('des_fk')->references('id')-> on('designs');
             $table->integer('Rate');
             $table->String('Details');
             $table->timestamps();
         });
     }
 
-    /**
+    /** 
      * Reverse the migrations.
      *
      * @return void

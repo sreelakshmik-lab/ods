@@ -15,6 +15,9 @@ class CreateProfiledesignerTable extends Migration
     {
         Schema::create('profiledesigner', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('log_fk')->unsigned();
+            // $table->integer('log_fk')->nullable()->change();
+            // $table->integer('log_fk')->references('id')-> on('userreg');
             $table->integer('designerid');
             $table->string('edu_quali');
             $table->string('work_exp');

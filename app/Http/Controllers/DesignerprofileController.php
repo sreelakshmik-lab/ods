@@ -15,7 +15,9 @@ class DesignerprofileController extends Controller
     	if($designerprofile_exists===null)
     	{
     	$designerprofile = new Designerprofile();
-    	$designerprofile-> designerid = $request->input('designerid');
+    	
+      $designerprofile-> log_fk = $request->input('log_fk');
+      $designerprofile-> designerid = $request->input('designerid');
     	$designerprofile-> edu_quali = $request->input('edu_quali');
     	$designerprofile-> work_exp = $request->input('work_exp');
     	$designerprofile-> save();

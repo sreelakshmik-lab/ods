@@ -91,7 +91,7 @@ class designController extends Controller
        $designer-> email = $request->input('email');
        $designer-> password=$request->input('password');
        $designer-> address = $request->input('address');
-       $designer-> status= '1';
+       $designer-> status= '0';
        $designer-> user_type = 'designer';
        $designer->save();
        if($designer -> id > 0){
