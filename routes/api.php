@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('createuser/','designController@create_user');
+Route::get('createuser/','designController@create_user');
 
 Route::get('userlogin/','designController@user_login');
 

@@ -46,7 +46,11 @@ class designController extends Controller
           return response()->json($response);
     }
       } else {
-        return view('createuser');
+            $response = [
+        "status" =>0,
+         "msg" => "Invalid request method"
+          ];
+          return response()->json($response);  
       }
     }
 
