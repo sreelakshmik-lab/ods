@@ -11,57 +11,39 @@ class designController extends Controller
 {
     public function create_user(Request $request)
     {
-       $response = [
-          "status" => 0,
-          "msg" => $request->method()
-        ];
-        return response()->json($response);
-      if ($request->isMethod('post')) {
-         $response = [
+        $user_exists = userReg::where('email', $request->input('email'))->first();
+       if($user_exists===null){
+         $user = new userReg();
+         $user-> firstname = $request->input('firstname');
+         $user-> lastname = $request->input('lastname');
+         $user-> gender=$request->input('gender');
+         $user-> phone = $request->input('phone');
+         $user-> email = $request->input('email');
+         $user-> password=$request->input('password');
+         $user-> address = $request->input('address');
+         $user-> status= '1';
+         $user-> user_type = 'user';
+         $user->save();
+       if($user -> id > 0){
+        $response = [
           "status" => 1,
           "msg" =>"new user created"
         ];
-        return response()->json($response); 
-    //     $user_exists = userReg::where('email', $request->input('email'))->first();
-    //    if($user_exists===null){
-    //      $user = new userReg();
-    //      $user-> firstname = $request->input('firstname');
-    //      $user-> lastname = $request->input('lastname');
-    //      $user-> gender=$request->input('gender');
-    //      $user-> phone = $request->input('phone');
-    //      $user-> email = $request->input('email');
-    //      $user-> password=$request->input('password');
-    //      $user-> address = $request->input('address');
-    //      $user-> status= '1';
-    //      $user-> user_type = 'user';
-    //      $user->save();
-    //    if($user -> id > 0){
-    //     $response = [
-    //       "status" => 1,
-    //       "msg" =>"new user created"
-    //     ];
-    //     return response()->json($response);
-    //    }else{
-    //     $response = [
-    //       "status" => 0,
-    //       "msg" => "failed to create new user"
-    //     ];
-    //     return response()->json($response);
-    //    }
-    // } else {
-    //   $response = [
-    //     "status" =>0,
-    //      "msg" => "Account already exists"
-    //       ];
-    //       return response()->json($response);
-    // }
-      } else {
-            $response = [
+        return response()->json($response);
+       }else{
+        $response = [
+          "status" => 0,
+          "msg" => "failed to create new user"
+        ];
+        return response()->json($response);
+       }
+    } else {
+      $response = [
         "status" =>0,
-         "msg" => "Invalid request method"
+         "msg" => "Account already exists"
           ];
-          return response()->json($response);  
-      }
+          return response()->json($response);
+    }
     }
 
 	public function user_login(Request $request)
