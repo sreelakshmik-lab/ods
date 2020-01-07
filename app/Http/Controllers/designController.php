@@ -11,41 +11,44 @@ class designController extends Controller
 {
     public function create_user(Request $request)
     {
-       $user_exists = userReg::where('email', $request->input('email'))->first();
+      if ($request->isMethod('post')) {
+        $user_exists = userReg::where('email', $request->input('email'))->first();
        if($user_exists===null){
-       $user = new userReg();
-       $user-> firstname = $request->input('firstname');
-       $user-> lastname = $request->input('lastname');
-       $user-> gender=$request->input('gender');
-       $user-> phone = $request->input('phone');
-       $user-> email = $request->input('email');
-       $user-> password=$request->input('password');
-       $user-> address = $request->input('address');
-       $user-> status= '1';
-       $user-> user_type = 'user';
-       $user->save();
+         $user = new userReg();
+         $user-> firstname = $request->input('firstname');
+         $user-> lastname = $request->input('lastname');
+         $user-> gender=$request->input('gender');
+         $user-> phone = $request->input('phone');
+         $user-> email = $request->input('email');
+         $user-> password=$request->input('password');
+         $user-> address = $request->input('address');
+         $user-> status= '1';
+         $user-> user_type = 'user';
+         $user->save();
        if($user -> id > 0){
-       	$response = [
-       		"status" => 1,
-       		"msg" =>"new user created"
-       	];
-       	return response()->json($response);
+        $response = [
+          "status" => 1,
+          "msg" =>"new user created"
+        ];
+        return response()->json($response);
        }else{
-       	$response = [
-       		"status" => 0,
-       		"msg" => "failed to create new user"
-       	];
-       	return response()->json($response);
+        $response = [
+          "status" => 0,
+          "msg" => "failed to create new user"
+        ];
+        return response()->json($response);
        }
+    } else {
+      $response = [
+        "status" =>0,
+         "msg" => "Account already exists"
+          ];
+          return response()->json($response);
     }
-    else{
-    	$response = [
-    		"status" =>0,
-    	 	 "msg" => "Account already exists"
-    	 	  ];
-    	 	  return response()->json($response);
+      } else {
+        return view('createuser');
+      }
     }
-}
 
 	public function user_login(Request $request)
 	{
