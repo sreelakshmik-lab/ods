@@ -11,6 +11,11 @@ class designController extends Controller
 {
     public function create_user(Request $request)
     {
+       $response = [
+          "status" => 0,
+          "msg" => $request->method()
+        ];
+        return response()->json($response);
       if ($request->isMethod('post')) {
          $response = [
           "status" => 1,
