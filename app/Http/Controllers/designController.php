@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\userReg;
+use App\DesignerProfile
 use DB;
 
 class designController extends Controller
@@ -48,6 +49,10 @@ class designController extends Controller
 
 	public function user_login(Request $request)
 	{
+    // $var=request(['email','password']);
+    // $email= $var['email'];
+    // $password= $var['password'];
+
 		$user = userReg::where('email','=',$request->input('email'))->first();
 		if($user === null)
 		{
@@ -93,6 +98,13 @@ class designController extends Controller
        $designer-> status= '0';
        $designer-> user_type = 'designer';
        $designer->save();
+       
+       $designer_detail = new DesignerProfile();
+       $designer_detail->designer_id = $designer->id;
+       $designer_detail->edu_quali = $request->input('edu_quali');
+       $designer_detail->work_exp = $request->input('work_exp');
+       $designer_detail->save();
+
        if($designer -> id > 0){
        	$response = [
        		"status" => 1,
