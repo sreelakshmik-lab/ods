@@ -63,10 +63,10 @@ class designController extends Controller
 			return response($response);
 		}
 		else {
-			if($user -> password === $request-> input('password')){
+			if($user->password === $request-> input('password')){
 				$response =[
 					"status" =>1,
-					"userID" => $user-> id,
+					"userID" => $user->id,
           "user_type" => $user->user_type
 				];
 				return response($response);
