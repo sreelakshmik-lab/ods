@@ -67,7 +67,7 @@ class designController extends Controller
 				$response =[
 					"status" =>1,
 					"userID" => $user-> id,
-          "user_type" => $user->user_type;
+          "user_type" => $user->user_type
 				];
 				return response($response);
 		     }else
