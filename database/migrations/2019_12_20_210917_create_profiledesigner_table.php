@@ -15,7 +15,7 @@ class CreateProfiledesignerTable extends Migration
     {
         Schema::create('profiledesigner', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('designer_id')
+            $table->unsignedBigInteger('designer_id');
             $table->foreign('designer_id')->references('id')->on('userreg');
             $table->string('edu_quali');
             $table->string('work_exp');
