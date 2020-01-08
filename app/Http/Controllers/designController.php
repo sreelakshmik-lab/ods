@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\userReg;
-use App\DesignerProfile;
+use App\Designerprofile;
 use DB;
 
 class designController extends Controller
@@ -99,7 +99,7 @@ class designController extends Controller
        $designer-> user_type = 'designer';
        $designer->save();
        
-       $designer_detail = new DesignerProfile();
+       $designer_detail = new Designerprofile();
        $designer_detail->designer_id = $designer->id;
        $designer_detail->edu_quali = $request->input('edu_quali');
        $designer_detail->work_exp = $request->input('work_exp');
