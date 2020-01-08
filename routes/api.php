@@ -19,15 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('createuser/','designController@create_user');
-
 Route::post('userlogin/','designController@user_login');
-
 Route::post('createdesigner/','designController@create_designer');
-
-Route::post('designerlogin/','designController@designer_login');
-
-Route::get('designerprofile/','DesignerprofileController@designer_profile');
-
 Route::post('designs/','designsController@designupload');
-
 Route::post('userview/','UserviewController@userview');

@@ -66,7 +66,8 @@ class designController extends Controller
 			if($user -> password === $request-> input('password')){
 				$response =[
 					"status" =>1,
-					"userID" => $user-> id
+					"userID" => $user-> id,
+          "user_type" => $user->user_type;
 				];
 				return response($response);
 		     }else
@@ -127,45 +128,5 @@ class designController extends Controller
     	 	  return response()->json($response);
     }
 }
-
-	public function designer_login(Request $request)
-	{
-		$designer = userReg::where('email',$request->input('email'))->first();
-		if($designer === null)
-		{
-			$response = [
-				"status" => 0,
-			    "msg" => "No user exists"
-			];
-			return response($response);
-		}
-		else {
-			if($designer -> password === $request-> input('password')){
-				$response =[
-					"status" =>1,
-					"userID" => $designer-> id
-				];
-				return response($response);
-		     }else
-		     	{
-				$response =[
-					"status" => 0,
-					"msg" => "Incorrect password"
-				];
-				return response($response);
-		      	}
-
-		      }
-
-
-	}
-
-
-	
-
-
-
-
-
 
 }
